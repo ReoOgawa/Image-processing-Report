@@ -6,49 +6,46 @@
 ORG=imread('cat.png'); % 原画像の入力   
 ORG = rgb2gray(ORG); colormap(gray); colorbar;   
 imagesc(ORG); colormap(gray); colorbar;  axis image;pause;  
-によって，原画像を読み込み，白黒濃淡画像へ変換し表示した結果を図１に示す．
+によって，原画像を読み込み，グレースケールイメージへ変換し表示した結果を図１に示す．なお図１は256階調の画像となっている．
 
-![原画像](https://github.com/ReoOgawa/Image-processing-Report/blob/master/Image/Report-01/01.jpg?raw=true)  
-図1 原画像
+![原画像](https://github.com/ReoOgawa/Image-processing-Report/blob/master/Image/Report-02/01.png?raw=true)  
+図1 グレースケールイメージ
 
-原画像を1/2サンプリングするには，画像を1/2倍に縮小した後，2倍に拡大すればよい．なお，拡大する際には，単純補間するために「box」オプションを設定する．
+２階調画像の生成をするには，256階調を２段階で表せばよいため，半分にあたる128より大きい値と，128未満の値の2階調で表現させればよい．
 
-IMG = imresize(ORG,0.5); % 画像の縮小  
-IMG2 = imresize(IMG,2,'box'); % 画像の拡大
+IMG = ORG>128;  
+imagesc(IMG); colormap(gray); colorbar;  axis image;
 
-1/2サンプリングの結果を図２に示す．
+２階調画像の生成の結果を図２に示す．
 
-![原画像](https://github.com/ReoOgawa/Image-processing-Report/blob/master/Image/Report-01/02.jpg?raw=true)  
-図2 1/2サンプリング
+![原画像](https://github.com/ReoOgawa/Image-processing-Report/blob/master/Image/Report-02/02.png?raw=true)  
+図2 ２階調画像
 
-同様に原画像を1/4サンプリングするには，画像を1/2倍に縮小した後，2倍に拡大すればよい．すなわち，
+同様に４階調画像の生成するには，256階調を４段階で表す，すなわち，
 
-IMG = imresize(ORG,0.5); % 画像の縮小  
-IMG2 = imresize(IMG,4,'box'); % 画像の拡大
+IMG0 = ORG>64;  
+IMG1 = ORG>128;  
+IMG2 = ORG>192;  
+IMG = IMG0 + IMG1 + IMG2;  
+imagesc(IMG); colormap(gray); colorbar;  axis image;
 
-とする．1/4サンプリングの結果を図３に示す．
+とする．４階調画像の結果を図３に示す．
 
-![原画像](https://github.com/ReoOgawa/Image-processing-Report/blob/master/Image/Report-01/03.jpg?raw=true)   
-図3 1/4サンプリング
+![原画像](https://github.com/ReoOgawa/Image-processing-Report/blob/master/Image/Report-02/03.png?raw=true)   
+図3 ４階調画像
 
-1/8から1/32サンプリングは，
+同様に８階調画像の生成するには，256階調を８段階で表す，すなわち，
 
-IMG = imresize(ORG,0.5); % 画像の縮小  
-IMG2 = imresize(IMG,8,'box'); % 画像の拡大
+IMG0 = ORG>32;  
+IMG1 = ORG>64;  
+IMG2 = ORG>96;  
+IMG3 = ORG>128;  
+IMG4 = ORG>160;  
+IMG5 = ORG>192;  
+IMG6 = ORG>224;  
+IMG = IMG0 + IMG1 + IMG2 + IMG3 + IMG4 + IMG5 + IMG6 ;  
+imagesc(IMG); colormap(gray); colorbar;  axis image;
 
-IMG = imresize(ORG,0.5); % 画像の縮小  
-IMG2 = imresize(IMG,16,'box'); % 画像の拡大
+![原画像](https://github.com/ReoOgawa/Image-processing-Report/blob/master/Image/Report-02/04.png?raw=true)  図4 ８階調画像
 
-IMG = imresize(ORG,0.5); % 画像の縮小  
-IMG2 = imresize(IMG,32,'box'); % 画像の拡大
-
-を繰り返す．サンプリングの結果を図４～６に示す．
-
-![原画像](https://github.com/ReoOgawa/Image-processing-Report/blob/master/Image/Report-01/04.jpg?raw=true)  図4 1/8サンプリング
-
-![原画像](https://github.com/ReoOgawa/Image-processing-Report/blob/master/Image/Report-01/05.jpg?raw=true)  
-図5 1/16サンプリング
-
-![原画像](https://github.com/ReoOgawa/Image-processing-Report/blob/master/Image/Report-01/06.jpg?raw=true)  図6 1/32サンプリング
-
-このようにサンプリング幅が大きくなると，モザイク状のサンプリング歪みが発生することがわかる．
+このように256階調を目的の階調の数で分割し，足したものを表示することで生成することができる．また，低い階調で画像を表現すると，明るさや色が緩やかに変化する部分に疑似輪郭と呼ばれる等高線状の縞が発生することが確認できる．
