@@ -34,7 +34,7 @@ imagesc(IMG); colormap(gray); colorbar;  axis image;
 ![原画像](https://github.com/ReoOgawa/Image-processing-Report/blob/master/Image/Report-02/03.png?raw=true)   
 図3 ４階調画像
 
-同様に８階調画像の生成するには，256階調を８段階で表す，すなわち，
+さらに８階調画像の生成するには，256階調を８段階で表す，すなわち，
 
 IMG0 = ORG>32;  
 IMG1 = ORG>64;  
@@ -49,3 +49,10 @@ imagesc(IMG); colormap(gray); colorbar;  axis image;
 ![原画像](https://github.com/ReoOgawa/Image-processing-Report/blob/master/Image/Report-02/04.png?raw=true)  図4 ８階調画像
 
 このように256階調を目的の階調の数で分割し，足したものを表示することで生成することができる．また，低い階調で画像を表現すると，明るさや色が緩やかに変化する部分に疑似輪郭と呼ばれる等高線状の縞が発生することが確認できる．
+
+
+|256階調|0~31|32~63|64~95|96~127|128~159|160~191|192~223|224~225|
+|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| 8階調 | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
+| 4階調 | 0 | 0 | 1 | 1 | 2 | 2 | 3 | 3 |
+| 2階調 | 0 | 0 | 0 | 0 | 1 | 1 | 1 | 1 |
