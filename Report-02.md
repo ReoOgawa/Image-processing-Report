@@ -1,12 +1,12 @@
-# 課題１レポート 標本化間隔と空間解像度
-##### 画像をダウンサンプリングして（標本化間隔を大きくして）表示せよ．
+# 課題２レポート 階調数と疑似輪郭
+##### ２階調，４階調，８階調の画像を生成せよ．
 
 標準画像「cat」を原画像とする．この画像は縦1000画像，横1000画素による正方形のディジタルカラー画像である．
 
-ORG=imread('cat.png'); % 原画像の入力  
-imagesc(ORG); axis image; % 画像の表示
-
-によって，原画像を読み込み，表示した結果を図１に示す．
+ORG=imread('cat.png'); % 原画像の入力   
+ORG = rgb2gray(ORG); colormap(gray); colorbar;   
+imagesc(ORG); colormap(gray); colorbar;  axis image;pause;  
+によって，原画像を読み込み，白黒濃淡画像へ変換し表示した結果を図１に示す．
 
 ![原画像](https://github.com/ReoOgawa/Image-processing-Report/blob/master/Image/Report-01/01.jpg?raw=true)  
 図1 原画像
