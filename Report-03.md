@@ -43,3 +43,5 @@ imagesc(IMG); colormap(gray); colorbar;
 
 ![原画像](https://github.com/ReoOgawa/Image-processing-Report/blob/master/Image/Report-03/05.png?raw=true)  
 図5 輝度値192以上閾値処理
+
+輝度値の設定を高くしていくことで，明暗がはっきりしていくことが確認できる．
