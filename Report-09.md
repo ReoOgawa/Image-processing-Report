@@ -44,7 +44,22 @@ imagesc(IMG); colormap(gray); colorbar;
 
 図4より，メディアンフィルタによる雑音除去によって，ノイズはほぼ除去されたことが確認できる．
 
+次にフィルタを設計し，適用させる．
 
-f=[0,-1,0;-1,5,-1;0,-1,0]; % フィルタの設計
-IMG = filter2(f,IMG,'same'); % フィルタの適用
-imagesc(IMG); colormap(gray); colorbar; % 画像の表示
+f=[0,-1,0;-1,5,-1;0,-1,0]; % フィルタの設計  
+IMG = filter2(f,IMG,'same'); % フィルタの適用  
+imagesc(IMG); colormap(gray); colorbar;  
+
+設計したフィルタを図5に示す．図5は鮮鋭化フィルタの一つである４近傍ラプラシアンフィルタである．鮮鋭化フィルタとは輪郭部分を検出して強調する事で，画像を鮮鋭化するというものである．
+
+
+![原画像](https://github.com/ReoOgawa/Image-processing-Report/blob/master/Image/Report-09/fil.png?raw=true)  
+図5 設計フィルタ(４近傍ラプラシアンフィルタ)
+
+図5の設計フィルタを適用した結果を図6に示す．
+
+![原画像](https://github.com/ReoOgawa/Image-processing-Report/blob/master/Image/Report-09/05.png?raw=true)  
+図6 設計フィルタ雑音除去画像
+
+図6より，設計フィルタを適用したことで，画像が鮮鋭化されたことが確認できる．  
+また画像が全体的に灰色となっているのは，画素値がマイナスの値を多く含むためである．画素値の範囲に基づいて色を割り当てているため，おおよそ中間値にあたる灰色が画像に表れていると考えられる．
